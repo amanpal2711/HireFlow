@@ -21,7 +21,7 @@ interface SavedJob {
 }
 
 export default function SavedJobsPage() {
-  const { user } = useUser();
+  useUser();
   const router = useRouter();
   const [savedJobs, setSavedJobs] = useState<SavedJob[]>([]);
   const [isLoading, setIsLoading] = useState(true);

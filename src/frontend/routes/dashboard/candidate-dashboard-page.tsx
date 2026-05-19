@@ -21,15 +21,12 @@ import {
 import { Navbar } from '@/frontend/components/shared/navbar'
 import { Footer } from '@/frontend/components/shared/footer'
 import { DashboardSidebar } from '@/frontend/components/dashboard/dashboard-sidebar'
-import { JobCard } from '@/frontend/components/shared/job-card'
 import { jobs } from '@/frontend/lib/mock-data'
-import { useFilterStore } from '@/frontend/store/filter-store'
 import { formatDate } from '@/frontend/lib/utils'
 import { cn } from '@/frontend/lib/utils'
 
 export default function CandidateDashboardPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { savedJobs } = useFilterStore()
 
   const stats = {
     applicationsSent: 12,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { Upload, User, Plus, X } from 'lucide-react';
 import { supabase } from '@/backend/supabase/client';
@@ -48,7 +48,7 @@ export default function CandidateProfile() {
     skills: [] as string[]
   });
 
-  const loadProfile = async () => {
+  const loadProfile = useCallback(async () => {
     try {
       const { data: { user: authUser } } = await supabase.auth.getUser();
       if (!authUser) return;
@@ -99,11 +99,11 @@ export default function CandidateProfile() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     loadProfile();
-  }, []);
+  }, [loadProfile]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

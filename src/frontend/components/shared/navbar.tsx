@@ -4,22 +4,18 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/frontend/components/ui/button'
 import { Input } from '@/frontend/components/ui/input'
-import { Badge } from '@/frontend/components/ui/badge'
 import { 
   Search, 
   Menu, 
   X, 
-  User, 
   Briefcase, 
   Building, 
   DollarSign, 
   BookOpen,
   Sun,
-  Moon,
-  Plus
+  Moon
 } from 'lucide-react'
 import { SignInButton, UserButton } from '@clerk/nextjs'
-import { cn } from '@/frontend/lib/utils'
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)

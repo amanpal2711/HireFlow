@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "test:db": "node scripts/test-db-connection.js",
-    "test:supabase": "node scripts/test-supabase.js"
+    "lint": "eslint"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.2.3",

@@ -58,7 +58,6 @@ export default function JobDetailPanel({
   hasApplied 
 }: JobDetailPanelProps) {
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [showJobDetails, setShowJobDetails] = useState(true);
   const [showAboutCompany, setShowAboutCompany] = useState(true);
   const [copiedUrl, setCopiedUrl] = useState(false);
 

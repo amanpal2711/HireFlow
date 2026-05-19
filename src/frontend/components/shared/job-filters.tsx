@@ -3,20 +3,16 @@
 import { useState } from 'react'
 import { Button } from '@/frontend/components/ui/button'
 import { Input } from '@/frontend/components/ui/input'
-import { Badge } from '@/frontend/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/frontend/components/ui/card'
 import { 
   Search, 
   MapPin, 
-  Briefcase, 
-  TrendingUp,
   X,
   ChevronDown,
   ChevronUp
 } from 'lucide-react'
 import { useFilterStore } from '@/frontend/store/filter-store'
-import { categories, locations } from '@/frontend/lib/mock-data'
-import { cn } from '@/frontend/lib/utils'
+import { locations } from '@/frontend/lib/mock-data'
 
 export function JobFilters() {
   const [expandedSections, setExpandedSections] = useState<string[]>(['jobType', 'experience'])
@@ -36,7 +32,6 @@ export function JobFilters() {
     setExperience,
     setSalaryRange,
     setDatePosted,
-    setCompanySize,
     setRemote,
     clearAllFilters
   } = useFilterStore()
@@ -60,15 +55,6 @@ export function JobFilters() {
     { value: 'today', label: 'Today' },
     { value: 'week', label: 'This week' },
     { value: 'month', label: 'This month' }
-  ]
-
-  const companySizes = [
-    { value: '1-10', label: '1-10 employees' },
-    { value: '11-50', label: '11-50 employees' },
-    { value: '51-200', label: '51-200 employees' },
-    { value: '201-500', label: '201-500 employees' },
-    { value: '501-1000', label: '501-1000 employees' },
-    { value: '1000+', label: '1000+ employees' }
   ]
 
   const toggleSection = (section: string) => {

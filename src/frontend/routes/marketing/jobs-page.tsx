@@ -1,25 +1,20 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
-import { Metadata } from 'next'
 import { Navbar } from '@/frontend/components/shared/navbar'
 import { Footer } from '@/frontend/components/shared/footer'
 import { JobCard } from '@/frontend/components/shared/job-card'
 import { JobFilters } from '@/frontend/components/shared/job-filters'
 import { Button } from '@/frontend/components/ui/button'
 import { Badge } from '@/frontend/components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/frontend/components/ui/card'
 import { 
   ArrowUpDown, 
   Calendar,
   Briefcase,
-  Filter,
-  TrendingUp
+  Filter
 } from 'lucide-react'
 import { supabase } from '@/backend/supabase/client'
-import { getJobsWithFilters } from '@/backend/supabase/queries'
 import { useFilterStore } from '@/frontend/store/filter-store'
-import { formatDate } from '@/frontend/lib/utils'
 
 interface Job {
   id: string
@@ -38,7 +33,6 @@ interface Job {
 export default function JobsPage() {
   const [sortBy, setSortBy] = useState('relevance')
   const [currentPage, setCurrentPage] = useState(1)
-  const [isLoading, setIsLoading] = useState(false)
   const [jobs, setJobs] = useState<Job[]>([])
   
   const {
@@ -57,8 +51,6 @@ export default function JobsPage() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        setIsLoading(true)
-
         const { data, error } = await supabase
           .from('jobs')
           .select(`
@@ -84,8 +76,6 @@ export default function JobsPage() {
 
       } catch (err) {
         console.error('Catch error:', JSON.stringify(err))
-      } finally {
-        setIsLoading(false)
       }
     }
 
@@ -131,7 +121,7 @@ export default function JobsPage() {
 
       return true
     })
-  }, [jobs, keyword])
+  }, [jobs, keyword, location, jobType, experience, salaryMin, salaryMax, remote])
 
   const sortedJobs = useMemo(() => {
     const jobsList = [...filteredJobs]

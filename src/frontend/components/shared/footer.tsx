@@ -4,12 +4,6 @@ import Link from 'next/link'
 import { Input } from '@/frontend/components/ui/input'
 import { Button } from '@/frontend/components/ui/button'
 import { 
-  Briefcase, 
-  Building, 
-  DollarSign, 
-  HelpCircle, 
-  Shield, 
-  FileText,
   Mail,
   Phone,
   MapPin,

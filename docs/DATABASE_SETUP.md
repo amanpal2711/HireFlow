@@ -32,11 +32,4 @@ WHERE table_schema = 'public'
 AND table_name IN ('jobs', 'applications', 'profiles', 'notifications');
 ```
 
-## Test The Connection
-
-```bash
-npm run test:db
-npm run test:supabase
-```
-
 The app includes fallback behavior for database connection failures so the UI can continue rendering with mock data where supported.

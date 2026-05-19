@@ -2,15 +2,13 @@
 
 import Link from 'next/link'
 import { Button } from '@/frontend/components/ui/button'
-import { Badge } from '@/frontend/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader } from '@/frontend/components/ui/card'
 import { 
   MapPin, 
   Users, 
   Building, 
   Star,
-  TrendingUp,
-  ExternalLink
+  TrendingUp
 } from 'lucide-react'
 import { Company } from '@/frontend/lib/mock-data'
 import { formatNumber } from '@/frontend/lib/utils'

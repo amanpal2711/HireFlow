@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/frontend/components/ui/button'
@@ -9,7 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/frontend/components/
 import { 
   MapPin, 
   Calendar, 
-  Briefcase, 
   Clock,
   DollarSign,
   Share2,
@@ -59,6 +57,26 @@ export default function JobDetailPage() {
   const similarJobs = jobs
     .filter(j => j.id !== jobId && (j.company === job.company || j.type === job.type))
     .slice(0, 3)
+
+  const toSharedJobCardJob = (similarJob: typeof jobs[number]) => ({
+    id: similarJob.id,
+    title: similarJob.title,
+    company: similarJob.company,
+    location: similarJob.location,
+    type: similarJob.type,
+    experience: similarJob.experience,
+    salary_min: similarJob.salaryMin,
+    salary_max: similarJob.salaryMax,
+    description: similarJob.description,
+    requirements: similarJob.requirements,
+    responsibilities: similarJob.responsibilities,
+    skills: similarJob.skills,
+    remote: similarJob.remote,
+    easy_apply: similarJob.easyApply,
+    ai_match: similarJob.aiMatch,
+    deadline: similarJob.deadline,
+    posted_date: similarJob.postedDate,
+  })
 
   const jobTypeColors = {
     'full-time': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
@@ -252,7 +270,7 @@ export default function JobDetailPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {similarJobs.map((similarJob) => (
-                      <JobCard key={similarJob.id} job={similarJob as any} />
+                      <JobCard key={similarJob.id} job={toSharedJobCardJob(similarJob)} />
                     ))}
                   </div>
                 </CardContent>

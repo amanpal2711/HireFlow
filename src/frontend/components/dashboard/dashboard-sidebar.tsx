@@ -12,9 +12,7 @@ import {
   FileText,
   Bell,
   Settings,
-  TrendingUp,
   LogOut,
-  Menu,
   X
 } from 'lucide-react'
 import { useAuthStore } from '@/frontend/store/auth-store'

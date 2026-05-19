@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/frontend/components/ui/button'
 import { Input } from '@/frontend/components/ui/input'
 import { Badge } from '@/frontend/components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/frontend/components/ui/card'
+import { Card, CardContent } from '@/frontend/components/ui/card'
 import { 
   Search, 
   TrendingUp, 
@@ -16,7 +16,7 @@ import {
 } from 'lucide-react'
 import { Navbar } from '@/frontend/components/shared/navbar'
 import { Footer } from '@/frontend/components/shared/footer'
-import { salaries, skills, locations } from '@/frontend/lib/mock-data'
+import { locations } from '@/frontend/lib/mock-data'
 import { formatSalary } from '@/frontend/lib/utils'
 
 export default function SalariesPage() {
@@ -47,17 +47,6 @@ export default function SalariesPage() {
     { city: 'Hyderabad', avgSalary: 1900000, jobs: 9000, color: 'bg-red-500' },
     { city: 'Chennai', avgSalary: 1400000, jobs: 6000, color: 'bg-yellow-500' }
   ]
-
-  const filteredSalaries = salaries.filter(salary => {
-    const matchesSearch = !searchQuery || 
-      salary.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      salary.company.toLowerCase().includes(searchQuery.toLowerCase())
-    
-    const matchesLocation = !selectedLocation || 
-      salary.location.toLowerCase().includes(selectedLocation.toLowerCase())
-    
-    return matchesSearch && matchesLocation
-  })
 
   return (
     <div className="min-h-screen bg-background">
@@ -151,7 +140,7 @@ export default function SalariesPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {topRoles.map((role, index) => (
+                    {topRoles.map((role) => (
                       <tr key={role.role} className="border-b hover:bg-muted/30 transition-colors">
                         <td className="p-4 font-medium">{role.role}</td>
                         <td className="p-4">{formatSalary(role.avgSalary * 0.8, role.avgSalary * 0.8)}</td>

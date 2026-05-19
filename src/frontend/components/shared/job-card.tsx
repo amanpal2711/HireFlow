@@ -6,7 +6,6 @@ import { Badge } from '@/frontend/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader } from '@/frontend/components/ui/card'
 import { 
   MapPin, 
-  Briefcase, 
   Calendar, 
   Bookmark, 
   BookmarkCheck,
@@ -52,20 +51,6 @@ interface JobCardProps {
 export function JobCard({ job, className }: JobCardProps) {
   const { savedJobs, toggleSaveJob } = useFilterStore()
   const isSaved = savedJobs.includes(job.id)
-
-  const jobTypeColors = {
-    'full-time': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    'part-time': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-    'contract': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-    'internship': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-  }
-
-  const experienceColors = {
-    'entry': 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200',
-    'mid': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-    'senior': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-    'lead': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200'
-  }
 
   return (
     <Card className={cn('hover:shadow-md transition-shadow duration-200', className)}>

@@ -68,7 +68,7 @@ export function FeaturesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
+          {features.map((feature) => {
             const Icon = feature.icon
             return (
               <Card key={feature.title} className="border-0 shadow-none hover:shadow-lg transition-all duration-300 group">

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Bookmark, ThumbsUp, MapPin, Briefcase, DollarSign } from 'lucide-react';
 
 interface Job {

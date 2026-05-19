@@ -3,9 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/backend/supabase/client'
-import Link from 'next/link'
 import { Button } from '@/frontend/components/ui/button'
-import { Badge } from '@/frontend/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/frontend/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/frontend/components/ui/tabs'
 import { JobCard } from '@/frontend/components/shared/job-card'
@@ -13,13 +11,11 @@ import {
   MapPin, 
   Building, 
   Users, 
-  Calendar,
   Star,
   Globe,
   Heart,
   Briefcase,
   DollarSign,
-  TrendingUp,
   Award,
   Coffee,
   Wifi,
@@ -48,6 +44,29 @@ interface Company {
   followers: number
   description: string
   culture: string[]
+  photos?: CompanyPhoto[]
+}
+
+interface CompanyPhoto {
+  id?: string
+  url?: string
+}
+
+interface CompanyReview {
+  title?: string
+  rating?: number
+  role?: string
+  date?: string
+  pros?: string[]
+  cons?: string[]
+}
+
+interface CompanySalary {
+  role: string
+  experience: string
+  base: number
+  total: number
+  location: string
 }
 
 interface Job {
@@ -85,10 +104,10 @@ export default function CompanyProfilePage() {
   const [isFollowing, setIsFollowing] = useState(false)
   const companyId = params.id as string
 
-  const [company, setCompany] = useState<any>(null)
+  const [company, setCompany] = useState<Company | null>(null)
   const [companyJobs, setCompanyJobs] = useState<Job[]>([])
-  const [companyReviews, setCompanyReviews] = useState<any[]>([])
-  const [companySalaries, setCompanySalaries] = useState<any[]>([])
+  const [companyReviews] = useState<CompanyReview[]>([])
+  const [companySalaries] = useState<CompanySalary[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -174,10 +193,6 @@ export default function CompanyProfilePage() {
 
   const handleFollow = () => {
     setIsFollowing(!isFollowing)
-  }
-
-  const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href)
   }
 
   return (
@@ -350,7 +365,7 @@ export default function CompanyProfilePage() {
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 gap-4">
-                      {company.photos?.map((photo: any, index: number) => (
+                      {company.photos?.map((_, index: number) => (
                         <div key={index} className="aspect-video bg-muted rounded-lg flex items-center justify-center">
                           <span className="text-muted-foreground">Office Photo {index + 1}</span>
                         </div>
@@ -436,7 +451,7 @@ export default function CompanyProfilePage() {
 
               {/* Reviews List */}
               <div className="lg:col-span-2 space-y-4">
-                {companyReviews.map((review: any, index: number) => (
+                {companyReviews.map((review, index: number) => (
                   <Card key={index}>
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
@@ -526,7 +541,7 @@ export default function CompanyProfilePage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {companySalaries.map((salary: any, index: number) => (
+                      {companySalaries.map((salary, index: number) => (
                         <tr key={index} className="border-b">
                           <td className="py-3 px-4 font-medium">{salary.role}</td>
                           <td className="py-3 px-4 text-muted-foreground">{salary.experience}</td>
@@ -556,7 +571,7 @@ export default function CompanyProfilePage() {
           {/* Photos Tab */}
           <TabsContent value="photos">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {company.photos.map((photo: any, index: number) => (
+              {company.photos?.map((_, index: number) => (
                 <Card key={index} className="overflow-hidden">
                   <div className="aspect-video bg-muted flex items-center justify-center">
                     <span className="text-muted-foreground">Office Photo {index + 1}</span>
